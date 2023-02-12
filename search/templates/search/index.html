@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <body>
+       
+<div class="hero-section__search">
+    <form id='searchForm' class="form" action="{% url 'search' %}" method="get">
+        <div class="form__field">
+            <label for="formInput#search">Search By Goods </label>
+            <input class="input input--text" id="formInput#search" type="text" name="search_query"
+                placeholder="Search by Goods" value="{{search_query}}" />
+        </div>
+
+        <input class="btn btn--sub btn--lg" type="submit" value="Search" />
+    </form>
+</div>
+
+{% if goods|length > 0 %}
+<section class="projectsList">
+    <div class="container">
+        <div class="grid grid--three">
+            {% for good in goods %}
+            <div class="column">
+                <div class="card project">
+                    
+                        
+                        <div class="card__body">
+                            <h3 class="project__title">{{good.name}} {{good.amount}} pc(s)</h3>
+                            
+                            <p class="project--rating">
+                                {{good.description}}
+                            </p>
+                        </div>
+                    
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+</section>
+{% else %}
+<h1>There are no goods</h1>
+{% endif %}
+</body>
+</html>
